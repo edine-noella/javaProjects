@@ -22,11 +22,11 @@
     </context-param>
     <context-param>
         <param-name>jdbcUsername</param-name>
-        <param-value>root</param-value>
+        <param-value>username</param-value>
     </context-param>
     <context-param>
         <param-name>jdbcPassword</param-name>
-        <param-value>BAG#bag4</param-value>
+        <param-value>password</param-value>
     </context-param>
 <!--        <servlet>-->
 <!--            <servlet-name>Students</servlet-name>-->
