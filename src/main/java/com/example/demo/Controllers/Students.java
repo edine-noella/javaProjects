@@ -50,6 +50,9 @@ public class Students extends HttpServlet {
                 case "/update":
                     updateStudent(request, response);
                     break;
+                case "/view":
+                    getStudent(request,response);
+                    break;
                 default:
                     listStudent(request, response);
                     break;
@@ -103,5 +106,12 @@ public class Students extends HttpServlet {
         Student book = new Student(Long.valueOf(id));
         studentDao.deleteStudent(book);
         response.sendRedirect("list");
+    }
+    private void getStudent(HttpServletRequest request, HttpServletResponse response) throws SQLException, IOException, ServletException {
+        int id = Integer.parseInt(request.getParameter("id"));
+        Student existingStudent = studentDao.getStudent(id);
+        request.setAttribute("viewStudent", existingStudent);
+        RequestDispatcher dispatcher = request.getRequestDispatcher("viewStudent.jsp");
+        dispatcher.forward(request, response);
     }
 }
