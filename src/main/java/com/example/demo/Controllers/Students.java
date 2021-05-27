@@ -97,11 +97,11 @@ public class Students extends HttpServlet {
     private void updateStudent(HttpServletRequest request, HttpServletResponse response)
             throws SQLException, IOException {
         int id = Integer.parseInt(request.getParameter("id"));
-        String title = request.getParameter("firstName");
-        String author = request.getParameter("lastName");
+        String firstName = request.getParameter("firstName");
+        String lastName = request.getParameter("lastName");
         String gender = request.getParameter("gender");
-        Student book = new Student(Long.valueOf(id), title, author, gender);
-        studentDao.updateStudent(book);
+        Student book = new Student(Long.valueOf(id), firstName, lastName, gender);
+        studentDaoHbnt.updateStudent(book);
         response.sendRedirect("list");
     }
     private void deleteStudent(HttpServletRequest request, HttpServletResponse response)
