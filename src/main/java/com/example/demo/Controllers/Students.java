@@ -106,14 +106,14 @@ public class Students extends HttpServlet {
     }
     private void deleteStudent(HttpServletRequest request, HttpServletResponse response)
             throws SQLException, IOException {
-        int id = Integer.parseInt(request.getParameter("id"));
-        Student book = new Student(Long.valueOf(id));
-        studentDao.deleteStudent(book);
+        Long id = Long.parseLong(request.getParameter("id"));
+        Student student = new Student(Long.valueOf(id));
+        studentDaoHbnt.deleteStudent(student.getId());
         response.sendRedirect("list");
     }
     private void getStudent(HttpServletRequest request, HttpServletResponse response) throws SQLException, IOException, ServletException {
-        int id = Integer.parseInt(request.getParameter("id"));
-        Student existingStudent = studentDao.getStudent(id);
+        Long id = Long.parseLong(request.getParameter("id"));
+        Student existingStudent = studentDaoHbnt.getStudent(id);
         request.setAttribute("viewStudent", existingStudent);
         RequestDispatcher dispatcher = request.getRequestDispatcher("viewStudent.jsp");
         dispatcher.forward(request, response);

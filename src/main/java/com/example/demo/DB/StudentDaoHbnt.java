@@ -54,7 +54,7 @@ public class StudentDaoHbnt {
      *
      * @param id
      */
-    public void deleteStudent(int id) {
+    public void deleteStudent(Long id) {
         Transaction transaction = null;
         try (Session session = HibernateUtil.getSessionFactory().openSession()) {
             // start a transaction
@@ -80,7 +80,7 @@ public class StudentDaoHbnt {
      * @param id
      * @return
      */
-    public Student getStudent(int id) {
+    public Student getStudent(Long id) {
         Transaction transaction = null;
         Student student = null;
         try (Session session = HibernateUtil.getSessionFactory().openSession()) {
