@@ -109,23 +109,23 @@ public class Students extends HttpServlet {
     private void updateStudent(HttpServletRequest request, HttpServletResponse response)
             throws SQLException, IOException {
         int id = Integer.parseInt(request.getParameter("id"));
-        String title = request.getParameter("firstName");
-        String author = request.getParameter("lastName");
+        String firstName = request.getParameter("firstName");
+        String lastName = request.getParameter("lastName");
         String gender = request.getParameter("gender");
-        Student book = new Student(Long.valueOf(id), title, author, gender);
-        studentDao.updateStudent(book);
+        Student book = new Student(Long.valueOf(id), firstName, lastName, gender);
+        studentDaoHbnt.updateStudent(book);
         response.sendRedirect("list");
     }
     private void deleteStudent(HttpServletRequest request, HttpServletResponse response)
             throws SQLException, IOException {
-        int id = Integer.parseInt(request.getParameter("id"));
-        Student book = new Student(Long.valueOf(id));
-        studentDao.deleteStudent(book);
+        Long id = Long.parseLong(request.getParameter("id"));
+        Student student = new Student(Long.valueOf(id));
+        studentDaoHbnt.deleteStudent(student.getId());
         response.sendRedirect("list");
     }
     private void getStudent(HttpServletRequest request, HttpServletResponse response) throws SQLException, IOException, ServletException {
-        int id = Integer.parseInt(request.getParameter("id"));
-        Student existingStudent = studentDao.getStudent(id);
+        Long id = Long.parseLong(request.getParameter("id"));
+        Student existingStudent = studentDaoHbnt.getStudent(id);
         request.setAttribute("viewStudent", existingStudent);
         RequestDispatcher dispatcher = request.getRequestDispatcher("viewStudent.jsp");
         dispatcher.forward(request, response);

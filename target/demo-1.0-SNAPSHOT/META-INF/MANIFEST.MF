@@ -1,5 +1,13 @@
+<<<<<<< HEAD
 Manifest-Version: 1.0
 Created-By: IntelliJ IDEA
 Built-By: edine
 Build-Jdk: 15.0.2
 
+=======
+Manifest-Version: 1.0
+Created-By: IntelliJ IDEA
+Built-By: dell
+Build-Jdk: 15.0.2
+
+>>>>>>> 35bbb8d7f7ce32c1b8a284fb9d5c47ff11cf6c87
