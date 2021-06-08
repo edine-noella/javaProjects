@@ -1,6 +1,9 @@
 package com.example.demo.utils;
 
+import com.example.demo.models.Course;
+import com.example.demo.models.CourseAssignment;
 import com.example.demo.models.Student;
+import com.example.demo.models.Bed;
 import org.hibernate.SessionFactory;
 import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 import org.hibernate.cfg.Configuration;
@@ -11,7 +14,7 @@ import java.util.Properties;
 
 /**
  * Java based configuration
- * @author ramesh Fadatare
+ * @author Stecie Niyonzima
  *
  */
 public class HibernateUtil {
@@ -25,9 +28,9 @@ public class HibernateUtil {
 				// Hibernate settings equivalent to hibernate.cfg.xml's properties
 				Properties settings = new Properties();
 				settings.put(Environment.DRIVER, "com.mysql.jdbc.Driver");
-				settings.put(Environment.URL, "jdbc:mysql://localhost:3306/school_man_db?characterEncoding=utf8");
+				settings.put(Environment.URL, "jdbc:mysql://localhost:3306/javaPractice?characterEncoding=utf8");
 				settings.put(Environment.USER, "root");
-				settings.put(Environment.PASS, "BAG#bag4");
+				settings.put(Environment.PASS, "Passfox@123");
 				settings.put(Environment.DIALECT, "org.hibernate.dialect.MySQL5Dialect");
 
 				settings.put(Environment.SHOW_SQL, "true");
@@ -38,6 +41,9 @@ public class HibernateUtil {
 
 				configuration.setProperties(settings);
 				configuration.addAnnotatedClass(Student.class);
+				configuration.addAnnotatedClass(Bed.class);
+				configuration.addAnnotatedClass(Course.class);
+				configuration.addAnnotatedClass(CourseAssignment.class);
 
 				ServiceRegistry serviceRegistry = new StandardServiceRegistryBuilder()
 						.applySettings(configuration.getProperties()).build();

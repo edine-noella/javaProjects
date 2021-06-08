@@ -1,6 +1,8 @@
 package com.example.demo.models;
 
 import javax.persistence.*;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 @Table(name="student")
@@ -12,11 +14,33 @@ public class Student {
         private String lastName;
         private String gender;
 
-        public Long getId() {
+        @ManyToMany(cascade = CascadeType.PERSIST, fetch = FetchType.EAGER)
+        @JoinTable(
+                name = "student_beds_tbl",
+                joinColumns = {@JoinColumn(name = "student_id")},
+                inverseJoinColumns = {@JoinColumn(name = "bed_id")}
+        )
+
+        private Set<Bed> beds = new HashSet<Bed>();
+
+        @OneToMany(mappedBy = "student", fetch =FetchType.LAZY )
+        private Set<CourseAssignment> courses = new HashSet<>();
+
+
+
+    public Long getId() {
             return id;
         }
 
-        public void setId(Long id) {
+    public Set<Bed> getBeds() {
+        return beds;
+    }
+
+    public void setBeds(Set<Bed> beds) {
+        this.beds = beds;
+    }
+
+    public void setId(Long id) {
             this.id = id;
         }
 
@@ -51,6 +75,13 @@ public class Student {
             this.gender = gender;
             this.lastName = lastName;
         }
+        public Set<CourseAssignment> getCourses() {
+            return courses;
+        }
+
+        public void setCourses(Set<CourseAssignment> courses) {
+            this.courses = courses;
+        }
         public Student(Long id){
             this.id = id;
         }
@@ -60,5 +91,4 @@ public class Student {
             this.gender = gender;
             this.lastName = lastName;
         }
-
 }
